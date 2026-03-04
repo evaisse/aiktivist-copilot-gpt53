@@ -1,19 +1,19 @@
 .PHONY: install dev start migrate test check
 
 install:
-bun install
+	bun install
 
 dev:
-bun run dev
+	bun run dev
 
 start:
-bun run start
+	bun run start
 
 migrate:
-bun run migrate
+	bun run migrate
 
 test:
-bun test
+	bun test
 
 check:
-bun run check
+	bun run check

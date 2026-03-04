@@ -475,13 +475,18 @@ export async function createApp(deps?: Partial<AppDeps>) {
           .get(conversationId, auth.user.id);
         if (!owned) return notFound();
 
+        let streamController: ReadableStreamDefaultController<string> | null = null;
         const stream = new ReadableStream<string>({
           start(controller) {
+            streamController = controller;
             controller.enqueue(`event: ready\ndata: ${JSON.stringify({ ok: true })}\n\n`);
             hub.subscribe(conversationId, controller);
           },
-          cancel(reason) {
-            void reason;
+          cancel(_reason) {
+            if (streamController) {
+              hub.unsubscribe(conversationId, streamController);
+              streamController = null;
+            }
           }
         });
 
