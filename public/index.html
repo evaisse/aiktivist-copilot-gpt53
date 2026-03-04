@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aiktivist</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <aside class="panel sidebar">
+        <div class="sidebar-header">
+          <strong>aiktivist</strong>
+          <button id="new-conversation">+ new</button>
+        </div>
+        <div id="session-info" class="meta"></div>
+        <ul id="conversation-list"></ul>
+        <button id="logout" class="logout">logout</button>
+      </aside>
+
+      <section class="panel content" id="app-root">
+        <div id="login-view" class="view">
+          <h1>login</h1>
+          <form id="login-form">
+            <input type="text" name="username" placeholder="username" required />
+            <input type="password" name="password" placeholder="password" required />
+            <button type="submit">connect</button>
+          </form>
+          <p class="meta">use ADMIN_USERNAME / ADMIN_PASSWORD from environment.</p>
+          <p id="login-error" class="error"></p>
+        </div>
+
+        <div id="chat-view" class="view hidden">
+          <header>
+            <h1 id="conversation-title">conversation</h1>
+            <div class="actions">
+              <button id="archive-toggle">archive</button>
+              <button id="delete-conversation">delete</button>
+            </div>
+          </header>
+          <div id="messages" class="messages"></div>
+          <form id="message-form" class="composer">
+            <input id="message-input" autocomplete="off" placeholder="> type message" required />
+            <button type="submit">send</button>
+          </form>
+          <div class="meta" id="stream-state">idle</div>
+          <pre id="event-log" class="event-log"></pre>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/public/app.js"></script>
+  </body>
+</html>
