@@ -1,0 +1,155 @@
+:root {
+  --bg-main: #151816;
+  --bg-panel: #1b1f1d;
+  --fg-main: #f1f3ee;
+  --fg-muted: #8a9188;
+  --accent-user: #8ccf2f;
+  --accent-keyword: #f0d44a;
+  --accent-link: #4aa3ff;
+  --border-subtle: #2c3230;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-main);
+  color: var(--fg-main);
+}
+
+.layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+}
+
+.panel {
+  border-right: 1px solid var(--border-subtle);
+  padding: 12px;
+  background: var(--bg-panel);
+}
+
+.content {
+  border-right: 0;
+  background: var(--bg-main);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+button,
+input {
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--fg-main);
+  padding: 8px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent-link);
+}
+
+#conversation-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  display: grid;
+  gap: 6px;
+}
+
+#conversation-list button {
+  width: 100%;
+  text-align: left;
+}
+
+#conversation-list button.active {
+  color: var(--accent-user);
+  border-color: var(--accent-user);
+}
+
+.view.hidden {
+  display: none;
+}
+
+#login-form,
+.composer {
+  display: grid;
+  gap: 8px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.messages {
+  margin-top: 10px;
+  max-height: 46vh;
+  overflow: auto;
+  border: 1px solid var(--border-subtle);
+  padding: 8px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.message {
+  margin-bottom: 8px;
+}
+
+.message.user .role {
+  color: var(--accent-user);
+}
+
+.message.assistant .role {
+  color: var(--fg-main);
+}
+
+.message .meta {
+  font-style: italic;
+}
+
+.meta {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+
+.error {
+  color: #ff6666;
+}
+
+.event-log {
+  margin-top: 8px;
+  max-height: 24vh;
+  overflow: auto;
+  border: 1px solid var(--border-subtle);
+  padding: 8px;
+  color: var(--fg-muted);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
